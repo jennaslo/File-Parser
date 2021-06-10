@@ -11,9 +11,6 @@ typeDictionary = { #maps data types in file to python data types
     'REAL64':'float64',
     'INT16':'int16',
 }
-
-filename = 'test_dataset_1.txt'
-
 """
 Function to read all information from the text file
 Parameters:
@@ -23,9 +20,10 @@ Returns:
 data : dataframe with required data
 properties : file properties for JSON  
 """
-def read_file(filename):
-    data = read_data(filename)
-    properties = read_file_properties(filename)
+def read_file():
+    filepath = input("Enter file path: ")
+    data = read_data(filepath)
+    properties = read_file_properties(filepath)
     return data, properties
 
 """Reads the file properties for JSON """
@@ -68,8 +66,14 @@ def create_JSON(data, properties):
     json_data = json.dumps(properties, indent=4)
     return json_data
 
+"""
+returns:
+data : pandas dataframe 
+json_data : json with file and mean information
+"""
 def main():
-    (data,properties) = read_file(filename)
+    
+    (data,properties) = read_file()
     json_data = create_JSON(data,properties)
     return data, json_data
 
